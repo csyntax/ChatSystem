@@ -1,0 +1,33 @@
+$(document).ready(function() {
+    var messageInput = $('#messageInput');
+    var chatbox = $('#chatbox');
+
+    var host = window.location.host;
+    var ws = new WebSocket('ws://' + host);
+    ws.onmessage = function(msg) {
+        var msgObj = JSON.parse(msg.data);
+        var newMessageElement = $('<div></div>');
+        var name = $('<span></span>').addClass('name').text(msgObj.name);
+        var message = $('<span></span>').addClass('message').text(msgObj.message);
+        newMessageElement.append(name).append(message);
+        chatbox.prepend(newMessageElement);
+    };
+
+    var nameInput = $('#nameInput');
+    var sendButton = $('#sendButton');
+    sendButton.on('click', function(ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+
+        var message = messageInput.val();
+
+        if(!message) {
+            alert('Please enter a message!');
+        } else {
+            var transferObject = {};
+            transferObject.name = nameInput.val() || "Anonymous";
+            transferObject.message = messageInput.val();
+            ws.send(JSON.stringify(transferObject));
+        };
+    });
+});
