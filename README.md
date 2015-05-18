@@ -1,2 +1,2 @@
-# Chat-System
-NodeJS chat system
+# Chat System
+Node chat system
