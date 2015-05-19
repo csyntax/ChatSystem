@@ -21,7 +21,7 @@ wss.on('connection', function (socket) {
     socket.on('message', function (msg) {
         var processedMessage = escapeMessage(msg);
         wss.broadcast(processedMessage);
-    })
+    });
 });
 
 wss.broadcast = function (data) {
