@@ -1,12 +1,12 @@
 $(document).ready(function() {
-    var host = window.location.host;
-    var ws = new WebSocket('ws://' + host);
+    var ws = new WebSocket('ws://' + window.location.host);
     
     ws.onmessage = function(msg) {
         var msgObj = JSON.parse(msg.data);
         var newMessageElement = $('<div></div>');
         var name = $('<span></span>').addClass('name').text(msgObj.name);
         var message = $('<span></span>').addClass('message').text(msgObj.message);
+
         newMessageElement.append(name).append(message);
         $('#chatbox').prepend(newMessageElement);
     };

@@ -1,11 +1,11 @@
 var http = require("http");
 var express = require('express');
-var WebSocketServer = require('ws').Server;
+var WebSocketServer = require("ws").Server;
 
 var app = express();
 var server = http.createServer(app);
 
-app.set('port', process.env.PORT || 8000);
+app.set("port", process.env.PORT || 8000);
 
 app.use(express.static(__dirname + "/static"));
 
@@ -16,11 +16,10 @@ var helloMessage = {
     message: "Hello!",
 };
 
-wss.on('connection', function (socket) {
+wss.on("connection", function (socket) {
     socket.send(JSON.stringify(helloMessage));
-    socket.on('message', function (msg) {
-        var processedMessage = escapeMessage(msg);
-        wss.broadcast(processedMessage);
+    socket.on("message", function (msg) {
+        wss.broadcast(escapeMessage(msg));
     });
 });
 
