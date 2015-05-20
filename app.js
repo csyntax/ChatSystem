@@ -4,17 +4,14 @@ var WebSocketServer = require("ws").Server;
 
 var app = express();
 var server = http.createServer(app);
-
-app.set("port", process.env.PORT || 8000);
-
-app.use(express.static(__dirname + "/static"));
-
 var wss = new WebSocketServer({server: server});
-
 var helloMessage = {
     name: "System",
     message: "Hello!",
 };
+
+app.set("port", process.env.PORT || 8000);
+app.use(express.static(__dirname + "/static"));
 
 wss.on("connection", function (socket) {
     socket.send(JSON.stringify(helloMessage));
