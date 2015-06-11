@@ -1,6 +1,5 @@
 $(document).ready(function() {
     var ws = new WebSocket('ws://' + window.location.host);
-    
     ws.onmessage = function(msg) {
         var msgObj = JSON.parse(msg.data);
         var newMessageElement = $('<div></div>');
@@ -17,7 +16,7 @@ $(document).ready(function() {
 
         var message = $('#messageInput').val();
         var transferObject = {};
-        
+
         transferObject.name = $('#nameInput').val() || "Anonymous";
         transferObject.message = $('#messageInput').val();
         ws.send(JSON.stringify(transferObject));
