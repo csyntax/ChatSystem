@@ -10,21 +10,21 @@ body {
 }
 
 .form {
-  margin-top: 0.2em;
+  margin-top: 0.5em;
 }
 
-.form > #nameInput,
-.form > #messageInput,
-.form > #sendButton {
+.form #nameInput,
+.form #messageInput,
+.form #sendButton {
   margin-bottom: 1em;
 }
 
 .name {
     font-weight: bold;
-    font-size: 16px;
-    padding-right: 10px;
+    font-size: 1.2em;
+    padding-right: 1em;
 }
 
 .message {
-    font-size: 13px;
+    font-size: 1em;
 }
