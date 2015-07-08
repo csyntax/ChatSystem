@@ -13,6 +13,7 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.12.4",
+    "jade": "^1.11.0",
     "ws": "^0.7.2"
   }
 }
