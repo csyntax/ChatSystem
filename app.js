@@ -1,4 +1,5 @@
 var http = require("http");
+var path = require("path");
 var express = require("express");
 var WebSocketServer = require("ws").Server;
 
@@ -10,19 +11,20 @@ var helloMessage = {
     message: "Hello!",
 };
 
-app.set("view engine", "jade");
 app.set("port", process.env.PORT || 8000);
-app.use(express.static(__dirname + "/static"));
+app.set("view engine", "jade");
+app.set("views", path.join(__dirname, "views"));
+app.use(express.static(path.join(__dirname, "static")));
 
 app.get("/", function (req, res) {
   res.render("index", { title: "Chat System" });
 });
 
 wss.on("connection", function (socket) {
-    socket.send(JSON.stringify(helloMessage));
-    socket.on("message", function (msg) {
-        wss.broadcast(escapeMessage(msg));
-    });
+  socket.send(JSON.stringify(helloMessage));
+  socket.on("message", function (msg) {
+    wss.broadcast(escapeMessage(msg));
+  });
 });
 
 wss.broadcast = function (data) {

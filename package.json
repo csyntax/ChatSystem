@@ -1,7 +1,7 @@
 {
   "name": "chat-system",
   "version": "1.0.0",
-  "description": "Node chat system",
+  "description": "NodeJS chat system using web socket",
   "main": "app.js",
   "scripts": {
     "start": "node ./app"
