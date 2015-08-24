@@ -6,15 +6,16 @@ var WebSocketServer = require("ws").Server;
 var app = express();
 var server = http.createServer(app);
 var wss = new WebSocketServer({server: server});
+
 var helloMessage = {
     name: "System",
-    message: "Hello!",
+    message: "Hello!"
 };
 
-app.set("port", process.env.PORT || 8000);
+app.set("port", process.env.PORT || 3000);
 app.set("view engine", "jade");
 app.set("views", path.join(__dirname, "views"));
-app.use(express.static(path.join(__dirname, "static")));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", function (req, res) {
   res.render("index", { title: "Chat System" });
